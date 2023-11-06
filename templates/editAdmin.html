@@ -1,0 +1,205 @@
+{% extends "layout.html" %}
+
+{% block title %}<title>Dashboard</title>{% endblock %}
+{% block contentHeader %}
+<h1 class="m-0">Dashboard</h1>
+{% endblock %}
+
+
+{% block content %}
+
+<style>
+    .searchfield {
+        background-color: #E0E0E0;
+        box-sizing: border-box;
+        width: 100%;
+        padding: 10px 15px;
+    }
+
+    input[type=text],
+    select {
+        padding: 5px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+
+    }
+
+    #submitS {
+        background-color: #003366;
+        color: white;
+        padding: 5px 10px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    #submitS:hover {
+        background-color: #0066cc;
+    }
+
+    .main {
+        margin-left: 200px;
+        height: 100vh;
+        padding-bottom: 10px;
+        padding-left: 20px;
+        padding-right: 10px;
+        padding-top: 75px;
+
+    }
+
+    button {
+        padding: 8px;
+    }
+
+    button:hover {
+        background-color: #555555;
+        color: white;
+    }
+
+    .product-image {
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    table.main {
+        width: 80%;
+        padding-top: 2%;
+        padding-left: 2%;
+    }
+
+    tr.main:nth-child(odd) {
+        background-color: #CCCCCC;
+    }
+
+    th.main,
+    td.main {
+        padding-top: 1%;
+        padding-bottom: 1%;
+        padding-left: 1%;
+    }
+
+    .dropdown:hover .dropdown-menu {
+        display: block;
+    }
+
+    .dropdown-menu {
+        margin: auto;
+        color: white;
+        background-color: #143649;
+    }
+
+    .dropdown-toggle {
+        margin: auto;
+    }
+
+    .navbar .dropdown-toggle,
+    .nav-tabs .dropdown-toggle {
+        margin: auto;
+    }
+
+    .grid-container {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        grid-row-gap: 10px;
+        padding: 3% 2%;
+        place-items: center;
+    }
+</style>
+<section class="content">
+    <div class="main h-100">
+        <h1></h1>
+        <div class="col-lg-5 d-flex">
+            <div class="product-image"
+                style="margin:auto;background-color:white;height:300px;aspect-ratio:1/1;background-image:url('#')">
+            </div>
+        </div>
+        <br>
+        <form action="/EditAdmin/{{data[0]}}" method="post">
+            <div class="col-lg-5 grid-container p-0">
+
+                <div class="grid-item">User Id</div>
+                <div class="grid-item"><input style="background:#e0e0e0;" type="text" name="user-id" value="{{data[0]}}"
+                        readonly /></div>
+                <div class="grid-item">Username</div>
+                <div class="grid-item"><input style="background:#e0e0e0;" type="text" name="username" value="{{data[2]}}"
+                        readonly /></div>
+                <div class="grid-item">Last Device</div>
+                <div class="grid-item"><input style="background:#e0e0e0;" type="text" name="last-device" value="{{data[5]}}" readonly /></div>
+                <div class="grid-item">Password</div>
+                <div class="grid-item"><input type="text" name="password" value="{{data[3]}}" required /></div>
+
+
+
+
+
+                <div class="grid-item">Role</div>
+                <div class="grid-item">
+                    <div class="form-check">
+                        <input type="checkbox" id="admin-box" name="permission-item" value="admin">
+                        <label class="form-check-label" for="exampleCheck1">Admin</label><br>
+
+                        <input type="checkbox" id="shop-box" name="permission-item" value="shop">
+                        <label class="form-check-label" for="exampleCheck1">Shop</label><br>
+
+                        <input type="checkbox" id="event-box" name="permission-item" value="event">
+                        <label class="form-check-label" for="exampleCheck1">Event</label><br>
+
+                        <input type="checkbox" id="ads-box" name="permission-item" value="ads">
+                        <label class="form-check-label" for="exampleCheck1">Advertisement</label><br>
+
+                        <input type="checkbox" id="profile-box" name="permission-item" value="profile">
+                        <label class="form-check-label" for="exampleCheck1">Profile</label><br>
+
+                        <input type="checkbox" id="voucher-box" name="permission-item" value="voucher">
+                        <label class="form-check-label" for="exampleCheck1">Voucher</label><br>
+
+                        <input type="checkbox" id="faq-box" name="permission-item" value="faq">
+                        <label class="form-check-label" for="exampleCheck1">FAQ</label><br>
+                    </div>
+                </div>
+
+                <script>
+                    
+                    var data = "{{data[4]}}"
+                    console.log(data)
+                    if (data.includes("admin")) {
+                        document.getElementById("admin-box").checked = true;
+                    }
+
+                    if (data.includes("shop")) {
+                        document.getElementById("shop-box").checked = true;
+                    }
+
+                    if (data.includes("event")) {
+                        document.getElementById("event-box").checked = true;
+                    }
+
+                    if (data.includes("ads")) {
+                        document.getElementById("ads-box").checked = true;
+                    }
+
+                    if (data.includes("profile")) {
+                        document.getElementById("profile-box").checked = true;
+                    }
+
+                    if (data.includes("voucher")) {
+                        document.getElementById("voucher-box").checked = true;
+                    }
+
+                    if (data.includes("faq")) {
+                        document.getElementById("faq-box").checked = true;
+                    }
+                </script>
+
+            </div>
+            <button type="submit">Update</button>
+            <button>Reset</button>
+        </form>
+    </div>
+</section>
+{% endblock %}

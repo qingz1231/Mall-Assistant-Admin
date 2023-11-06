@@ -48,18 +48,18 @@
                     {% for admin in admins %}
                     <tr>
                         <td id="count">{{admin[0]}}</td>
-                        <td id="username">{{admin[1]}}</td>
-                        <td id="role">{{admin[3]}}</td>
-                        <td id="device">{{admin[4]}}</td>
-                        <td id="lastLogin">{{admin[5]}}</td>
+                        <td id="username">{{admin[2]}}</td>
+                        <td id="role">{{admin[4]}}</td>
+                        <td id="device">{{admin[5]}}</td>
+                        <td id="lastLogin">{{admin[6]}}</td>
                         <td class="project-actions text-right">
 
-                            <a class="btn btn-info btn-sm" href="#">
+                            <a class="btn btn-info btn-sm" href="/EditAdmin/{{admin[0]}}">
                                 <i class="fas fa-pencil-alt">
                                 </i>
                                 Edit
                             </a>
-                            <a class="btn btn-danger btn-sm" href="#">
+                            <a class="btn btn-danger btn-sm" href="/DeleteAdmin/{{admin[0]}}">
                                 <i class="fas fa-trash">
                                 </i>
                                 Delete
@@ -86,43 +86,43 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form>
+                <form action="/AddAdmin" method="post">
                     <div class="modal-body">
 
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Username</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1"
-                                    placeholder="Enter username" fdprocessedid="wrxm3l">
+                                <input type="text" class="form-control" name="username"
+                                    placeholder="Enter username" >
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Password</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1"
-                                    placeholder="Emter Password" fdprocessedid="9yt2q">
+                                <input type="password" class="form-control" name="password"
+                                    placeholder="Emter Password">
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Permission</label>
+                                <label for="permission">Permission</label>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                    <input type="checkbox" name="permission-item" value="admin">
                                     <label class="form-check-label" for="exampleCheck1">Admin</label><br>
 
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                    <input type="checkbox" name="permission-item" value="shop">
                                     <label class="form-check-label" for="exampleCheck1">Shop</label><br>
 
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                    <input type="checkbox" name="permission-item" value="event">
                                     <label class="form-check-label" for="exampleCheck1">Event</label><br>
 
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                    <input type="checkbox" name="permission-item" value="ads">
                                     <label class="form-check-label" for="exampleCheck1">Advertisement</label><br>
 
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                    <input type="checkbox" name="permission-item" value="profile">
                                     <label class="form-check-label" for="exampleCheck1">Profile</label><br>
 
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                    <input type="checkbox" name="permission-item" value="voucher">
                                     <label class="form-check-label" for="exampleCheck1">Voucher</label><br>
 
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                    <input type="checkbox" name="permission-item" value="faq">
                                     <label class="form-check-label" for="exampleCheck1">FAQ</label><br>
                                 </div>
                             </div>
@@ -133,7 +133,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" fdprocessedid="d4d051j">Submit</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 </form>
             </div>
