@@ -180,11 +180,10 @@ def AddAdmin():
         print(e.__cause__)
         return redirect(url_for('Error'))
         
-    
+
+
 @app.route("/DeleteAdmin/<string:id>")
 def DeleteAdmin(id):
-    
-
     cursor = db_conn.cursor()
 
     try:
@@ -204,6 +203,47 @@ def DeleteAdmin(id):
         cursor.close()
         print(e.__cause__)
         return redirect(url_for('Error'))
-    
+
+
+@app.route("/AddShop", methods=['POST'])
+def AddShop():
+    new_name = request.form['name']
+    new_location = request.form['location']
+    new_desc = request.form['description']
+    checked_permission = request.form.getlist('permission-item')
+    register_permission = "{" + ", ".join(checked_permission ) + "}"
+
+    url = "https://mall-assistant-system.s3.amazonaws.com/adminLogin-bg.jpg"
+    tag = "testing"
+
+    cursor = db_conn.cursor()
+
+
+    cursor.execute(addShop,('1',new_name, new_location, new_desc, url ,tag))
+
+    flash('Shop Added Successfully')
+    db_conn.commit()
+    cursor.close()
+    return redirect(url_for('Shop'))
+
+@app.route("/DeleteShop/<string:id>")
+def DeleteShop(id):
+    cursor = db_conn.cursor()
+
+    try:
+        cursor.execute(deleteAdmin,(id))
+        flash('Shop Deleted Successfully')
+        db_conn.commit()
+        cursor.close()
+
+        return redirect(url_for('Shop'))
+
+        
+    except Exception as e:
+        cursor.close()
+        print(e.__cause__)
+        return redirect(url_for('Error'))
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)

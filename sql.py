@@ -10,7 +10,8 @@ updateAdminDetail = "UPDATE " + admin_table + " SET password = %s, role = %s WHE
 shop_table = "shop"
 getShopById = "SELECT * FROM " + shop_table + " WHERE id=%s"
 getAllShop = "SELECT * FROM " + shop_table
-addShop = "INSERT INTO " + shop_table + " (username, password, role)" + " VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
+addShop = "INSERT INTO " + shop_table + " (mall_id, shop_name, shop_location, shop_desc, image_url, tags)" + " VALUES (%s, %s, %s, %s, %s, %s)"
+deleteShop = "DELETE FROM " + shop_table + " WHERE shop_id = %s"
 
 
 
